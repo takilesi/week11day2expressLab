@@ -10,17 +10,20 @@ app.get('/', function (req, res) {
 });
 
 
-
-// app.get('/hello/:firstname/:lastname', (req, res) => {
-// 	console.log(req.params);
-// 	res.send('Hello ' + req.params.firstname + ' ' + req.params.lastname);
-// });
+// add url below to WebAdress bar
+// http://localhost:3000/greeting/Bob?title=Master
 
 app.get('/greeting/:name', function(req, res) {
     console.log(req.params);
     console.log(req.query);
     res.send('Sup ' + req.query.title + ' ' + req.params.name + '?');
   });
+
+  app.get('/tip/:total/:tipPercentage', (req, res) =>{
+    let tip = req.params.total * (req.params.tipPercentage / 100)
+    res.send (`<h1>Your expected tip is ${tip}</h1>`)
+})
+
 
 
 // Tell the app to listen on port 3000
