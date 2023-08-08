@@ -9,7 +9,6 @@ app.get('/', function (req, res) {
   res.send('<h1>Hello World!</h1>');
 });
 
-
 // add url below to WebAdress bar
 // http://localhost:3000/greeting/Bob?title=Master
 
@@ -19,10 +18,29 @@ app.get('/greeting/:name', function(req, res) {
     res.send('Sup ' + req.query.title + ' ' + req.params.name + '?');
   });
 
-  app.get('/tip/:total/:tipPercentage', (req, res) =>{
+// tip calculator: add url below to WebAddress bar
+// http://localhost:3000/tip/50/20
+app.get('/tip/:total/:tipPercentage', (req, res) =>{
     let tip = req.params.total * (req.params.tipPercentage / 100)
     res.send (`<h1>Your expected tip is ${tip}</h1>`)
 })
+
+
+// pull data from models/response.js
+const responses = require('./models/response.js');
+// will i be a millionaire: add url below to WebAddress bar 
+// http://localhost:3000/magic/Will%20I%20Be%20A%20Millionaire
+app.get('/magic/:question', (req, res) =>{
+    let randomResponse = responses[Math.floor(Math.random() * responses.length)]
+    res.send(`${req.params.question}<h1>${randomResponse}</h1>`)
+})
+
+
+
+
+
+
+
 
 
 
